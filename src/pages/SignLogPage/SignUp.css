@@ -1,0 +1,86 @@
+.sign-up {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #EDF1F7;
+}
+.sign-up-box {
+    width: 70%;
+    height: 81vh;
+    background-color: #fff;
+    box-shadow: 10px 10px 15px rgba(0,0,0,0.02);
+    display: flex;
+}
+.image {
+    width: 50%;
+    height: 81vh;
+    background-color: aliceblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.image img {
+    width: 100%;
+    height: auto;
+}
+.login-form {
+    width: 50%;
+    height: 81vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.login-form h2 {
+    font-weight: 400;
+}
+.login-form p {
+    font-size: 12px;
+    width: 70%;
+    text-align: center;
+    margin-top: -15px;
+    margin-bottom: 25px;
+}
+.form {
+    width: 70%;
+}
+.form input {
+    width: 100%;
+    padding: 5px;
+    height: 5vh;
+    margin-bottom: 15px;
+    border: 1px solid #B9B1B0;
+    outline: none;
+}
+.form input:hover {
+    border: 1px solid #000;
+    transition: 0.3s all;
+}
+.form input:focus {
+    border: 1px solid #000;
+    height: 6vh;
+}
+.form button {
+    width: 104%;
+    height: 7vh;
+    background-color: #080254;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 400;
+    cursor: pointer;
+}
+.log-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.log-text a{
+    font-size: 12px;
+    margin-top: -12%;
+    position: relative;
+    right: 7%;
+}

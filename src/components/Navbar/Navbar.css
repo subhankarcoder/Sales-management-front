@@ -1,0 +1,22 @@
+.navbar {
+    width: 100%;
+    height: 15vh;
+    background-color: #fff;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+ul{
+    display: flex;
+    margin-right: 25px;
+    list-style-type: none;
+}
+ul li {
+    margin-left: 25px;
+}
+ul li a {
+    text-decoration: none;
+    color: #000;
+    /* font-weight: 500; */
+}

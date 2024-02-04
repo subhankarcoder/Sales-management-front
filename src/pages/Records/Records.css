@@ -1,0 +1,46 @@
+.record {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: #edf1f7;
+}
+.card {
+    width: 25%;
+    margin: 15px;
+    height: 60vh;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 10px 10px 15px rgba(0,0,0,0.03);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.card .det {
+    display: flex;
+}
+.card .head {
+    font-size: 14px;
+    font-weight: 500;
+}
+.data {
+    font-size: 14px;
+    font-weight: 400;
+    margin-left: 10px;
+}
+.edit {
+    height: 23%;
+    width: 13%;
+    background-color: #080254;
+    border-radius: 50%;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: -17px;
+    left: 94%;
+    cursor: pointer;
+}
