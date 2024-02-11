@@ -84,3 +84,46 @@
     position: relative;
     right: 7%;
 }
+.error-msg {
+    width: 100%;
+    margin-top: 10px;
+    font-size: 12px;
+    line-height: 5px;
+    color: #e31212;
+}
+@media screen and (max-width: 768px) {
+    .image {
+        width: 0%;
+    }
+    .login-form {
+        width: 100%;
+    }
+}
+@media screen and (max-width: 426px) {
+    .sign-up-box {
+        width: 80%;
+    }
+    .log-text a{
+        font-size: 12px;
+        margin-top: -17%;
+        position: relative;
+        right: 1%;
+    }
+    .form button {
+        margin-top: 10px;
+    }
+}
+@media screen and (max-width: 376px) {
+    .sign-up-box {
+        width: 90%;
+    }
+    .log-text a{
+        font-size: 12px;
+        margin-top: -17%;
+        position: relative;
+        right: 1%;
+    }
+    .form button {
+        margin-top: 10px;
+    }
+}

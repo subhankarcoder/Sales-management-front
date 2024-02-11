@@ -5,9 +5,11 @@ import { auth } from "../../config/Firebase-config";
 import SpecialInput from "../../components/Dropdown";
 import axios from "axios";
 import Navbar from "../../components/Navbar/Navbar";
+import { useNavigate } from "react-router-dom";
 
 const AddStatus = () => {
-  const api_endpoint = "http://localhost:8000/";
+  const api_endpoint = "https://sales-management-back.onrender.com/";
+  const navigate = useNavigate();
   const [selected, setSelected] = useState("");
   const [email, setEmail] = useState("");
   const [sp_id, setSp_id] = useState("");
@@ -15,6 +17,7 @@ const AddStatus = () => {
   const [address, setAddress] = useState("");
   const [visitDate, setVisitDate] = useState("");
   const [orderValue, setOrderValue] = useState("");
+  const [productName, setProductName] = useState("");
   const [orderQuantity, setOrderQuantity] = useState("");
   const [deliveryDate, setDeliveryDate] = useState("");
   const [formData, setFormData] = useState({
@@ -36,6 +39,7 @@ const AddStatus = () => {
   const handleSubmit = async () => {
     const updatedFormData = {
       added_by: sp_id,
+      product_name: productName,
       seller_name: buyerName,
       address: address,
       visit_date: visitDate,
@@ -47,14 +51,12 @@ const AddStatus = () => {
 
     setFormData(updatedFormData);
 
-    console.log(updatedFormData);
-
     try {
       const response = await axios.post(
         `${api_endpoint}status/sales-status-upload`,
         updatedFormData
       );
-      console.log(response);
+      navigate("/home")
     } catch (error) {
       console.error(error);
     }
@@ -63,13 +65,11 @@ const AddStatus = () => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log(user.email);
         setEmail(user.email);
 
         axios
           .get(`${api_endpoint}details/get-sp-id/${user.email}`)
           .then((response) => {
-            console.log(response.data.sp_id);
             setSp_id(response.data.sp_id);
             setFormData({ ...formData, added_by: response.data.sp_id });
           })
@@ -121,6 +121,11 @@ const AddStatus = () => {
               type="text"
               placeholder="Enter Order Quantity (e.g., 20)"
               onChange={(e) => setOrderQuantity(e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="Enter Product Name"
+              onChange={(e) => setProductName(e.target.value)}
             />
             <input
               type="date"

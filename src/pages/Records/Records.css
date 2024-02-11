@@ -1,46 +1,120 @@
 .record {
-    width: 100%;
-    height: auto;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background-color: #edf1f7;
+}
+.card-holder {
+    width: 90%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    background-color: #edf1f7;
 }
 .card {
-    width: 25%;
-    margin: 15px;
-    height: 60vh;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 10px 10px 15px rgba(0,0,0,0.03);
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  width: 25%;
+  margin: 15px;
+  height: 65vh;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.03);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .card .det {
-    display: flex;
+  display: flex;
 }
 .card .head {
-    font-size: 14px;
-    font-weight: 500;
+  font-size: 14px;
+  font-weight: 500;
 }
 .data {
-    font-size: 14px;
-    font-weight: 400;
-    margin-left: 10px;
+  font-size: 14px;
+  font-weight: 400;
+  margin-left: 10px;
 }
 .edit {
-    height: 23%;
-    width: 13%;
-    background-color: #080254;
-    border-radius: 50%;
-    color: #fff;
+  /* height: 40px;
+    width: 13%; */
+  background-color: #080254;
+  /* border-radius: 50%; */
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  position: relative;
+  /* top: -17px;
+    left: 94%; */
+  cursor: pointer;
+}
+.choose-filter {
+    width: 35%;
+    height: 10vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.choose-filter p {
+    margin-right: 10px;
+    width: 40%;
+    font-size: 12px;
+}
+.show-all {
+    width: 50%;
+    /* margin-top: 7px; */
+    height: 9.5vh;
+    margin-left: 20px;
+    background-color: #fff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .card {
+    height: 45vh;
+  }
+  .card .head {
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .data {
+    font-size: 12px;
+  }
+}
+@media screen and (max-width: 426px) {
+  .card {
+    width: 80%;
+    height: 50vh;
+  }
+  .edit {
+    position: relative;
+    top: 5px;
+    height: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
-    top: -17px;
-    left: 94%;
-    cursor: pointer;
+    font-size: 18px;
+  }
+  .choose-filter {
+    width: 75%;
+    height: 5vh;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+  .card .head {
+    font-size: 15px;
+    font-weight: 500;
+  }
+  .data {
+    font-size: 15px;
+  }
 }

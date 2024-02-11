@@ -1,14 +1,18 @@
-import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import "./UpdateStatus.css"
 import SpecialInput from "../Dropdown";
+import { auth } from "../../config/Firebase-config";
+import { onAuthStateChanged } from "firebase/auth";
+import axios from "axios";
 
 const UpdateStatus = (props) => {
   const location = useLocation();
+  const navigate = useNavigate();
   const { state } = location;
-  const api_endpoint = "http://localhost:8000/";
-  const [selected, setSelected] = useState("");
+  const api_endpoint = "https://sales-management-back.onrender.com/";
+  const [selected, setSelected] = useState(state.visit_status);
   const [email, setEmail] = useState("");
   const [sp_id, setSp_id] = useState("");
   const [buyerName, setBuyerName] = useState("");
@@ -17,9 +21,12 @@ const UpdateStatus = (props) => {
   const [orderValue, setOrderValue] = useState("");
   const[visitStatus, setVisitStatus] = useState(state.visit_status);
   const [orderQuantity, setOrderQuantity] = useState("");
+  const [productName, setProductName] = useState("");
   const [deliveryDate, setDeliveryDate] = useState("");
+  const [objectId, setObjectId] = useState(state._id)
   const [formData, setFormData] = useState({
     added_by: "",
+    product_name: "",
     seller_name: "",
     address: "",
     visit_date: "",
@@ -32,6 +39,56 @@ const UpdateStatus = (props) => {
     setSelected(value);
     setFormData({ ...formData, visit_status: value }); // Update visit_status in formData
   };
+
+  const handleEditClick = async () => {
+    try {
+      const updatedData = {
+        ...state,
+        object_id: objectId,
+        added_by: sp_id,
+        product_name: productName ? productName : state.product_name,
+        seller_name: buyerName ? buyerName : state.seller_name,
+        address: address ? address : state.address,
+        visit_date: visitDate ? visitDate : state.visit_date,
+        visit_status: formData.visit_status,
+        order_value: orderValue ? orderValue : state.order_value,
+        order_quantity: orderQuantity ? orderQuantity : state.order_quantity,
+        order_placement_date: deliveryDate ? deliveryDate : state.order_placement_date,
+      };
+
+      const response = await axios.put(
+        `${api_endpoint}status/sales-status/${objectId}`,
+        updatedData
+      );
+
+      console.log(response.data);
+      navigate("/record")
+    console.log(updatedData)
+
+    } catch (error) {
+      console.error("Error updating sales status:", error);
+    }
+  };
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setEmail(user.email);
+
+        axios
+          .get(`${api_endpoint}details/get-sp-id/${user.email}`)
+          .then((response) => {
+            console.log(response.data);
+            setSp_id(response.data.sp_id);
+          })
+          .catch((error) => {
+            console.error("Error fetching sp_id:", error);
+          });
+      } else {
+        console.log("Error");
+      }
+    });
+  }, []);
   return (
     <div>
       <div className="status">
@@ -77,6 +134,12 @@ const UpdateStatus = (props) => {
                 onChange={(e) => setOrderQuantity(e.target.value)}
               />
               <input
+                type="text"
+                placeholder="Enter Product name"
+                defaultValue={state.product_name}
+                onChange={(e) => setProductName(e.target.value)}
+              />
+              <input
                 type="date"
                 className="date"
                 placeholder="Enter Delivery date"
@@ -86,7 +149,7 @@ const UpdateStatus = (props) => {
             </>
           )}
 
-          <button>Edit</button>
+          <button onClick={handleEditClick}>Edit</button>
         </div>
       </div>
     </div>

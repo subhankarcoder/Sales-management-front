@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 
 const Home = () => {
-  const api_endpoint = "http://localhost:8000/";
+  const api_endpoint = "https://sales-management-back.onrender.com/";
   const [email, setEmail] = useState("");
   const [sp_id, setSp_id] = useState("");
   const [data_added, setData_added] = useState([]);
@@ -16,13 +16,11 @@ const Home = () => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log(user.email);
         setEmail(user.email);
 
         axios
           .get(`${api_endpoint}details/get-sp-id/${user.email}`)
           .then((response) => {
-            console.log(response.data.sp_id);
             setSp_id(response.data.sp_id);
 
             // Now that you have sp_id, make the second API call

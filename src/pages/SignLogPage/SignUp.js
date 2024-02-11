@@ -7,10 +7,11 @@ import { auth } from "../../config/Firebase-config";
 import axios from "axios";
 
 const SignUp = () => {
-  const api_endpoint = "http://localhost:8000/";
+  const api_endpoint = "https://sales-management-back.onrender.com/";
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
   const [sp_id, setSp_id] = useState("");
+  const [error, setError] = useState(false)
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -27,7 +28,6 @@ const SignUp = () => {
   };
 
   const handleSubmit = async () => {
-    console.log(formData);
 
     // Check if the form data is not empty before making the API call
     if (formData.username && formData.password && formData.sp_id) {
@@ -47,13 +47,12 @@ const SignUp = () => {
               registerEmail,
               registerPassword
             );
-            console.log("Success creating new user");
             navigate("/home");
           })
           .catch((err) => {
             console.log("Error while creating user");
+            setError(true)
           });
-        console.log("API call successful");
 
         // You can navigate or perform other actions after a successful API call
       } catch (err) {
@@ -74,7 +73,7 @@ const SignUp = () => {
         <div className="login-form">
           <h2>Welcome Mate!</h2>
           <p>
-            Give your full name as usename and a strong password. Give correct
+            Give your email address as usename and a strong password. Give correct
             employee id to sign Up.
           </p>
           <div className="form">
@@ -93,6 +92,7 @@ const SignUp = () => {
               placeholder="Enter employee id..."
               onChange={(e) => setSp_id(e.target.value)}
             ></input>
+            {error ? <span className="error-msg">*Oops! The username should be valid email password should be atleast 6 character and id should be correct!</span> : ""}
             <button onClick={register}>Sign Up</button>
             <div>
               <p>already have an account?</p>

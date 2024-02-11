@@ -7,7 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
 const Login = () => {
-  const api_endpoint = "http://localhost:8000/";
+  const api_endpoint = "https://sales-management-back.onrender.com/";
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const navigate = useNavigate();
@@ -53,7 +53,7 @@ const Login = () => {
               <p>already have an account?</p>
               <div className="log-text">
                 <p>Not a member already?</p>
-                <Link to={"/login"} href="#">
+                <Link to={"/"} href="#">
                   register
                 </Link>
               </div>
